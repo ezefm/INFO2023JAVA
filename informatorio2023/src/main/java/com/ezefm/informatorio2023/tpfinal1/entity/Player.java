@@ -13,7 +13,7 @@ public class Player {
     private Boolean isCaptain;
     private Integer tShirtNumber;
     private String team;
-    private Fut5Team teamX;
+
     public Player(){}
 
     public Player(String name, String lastName, Position position, Integer goals, Integer matchesPlayed, Boolean isCaptain, Integer tShirtNumber, String team) {

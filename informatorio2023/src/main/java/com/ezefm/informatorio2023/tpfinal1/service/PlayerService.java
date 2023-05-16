@@ -13,15 +13,16 @@ public class PlayerService {
         System.out.print("Lastname: ");
         String lastName = sc.nextLine();
         System.out.print("Position (GOALKEEPER, DEFENCE, A_MIDFIELDER, A_MIDDLE_FORWARD, A_FORWARD): ");
-        Position position = Position.valueOf(sc.nextLine());
+        Position position = Position.valueOf(sc.nextLine().toUpperCase());
         System.out.print("Goals: ");
-        Integer goals = Integer.valueOf(sc.next());
+        Integer goals = Integer.valueOf(sc.nextLine());
         System.out.print("Matches Played: ");
-        Integer matchesPlayed = Integer.valueOf(sc.next());
+        Integer matchesPlayed = Integer.valueOf(sc.nextLine());
         System.out.print( "Is captain ? (true-false): ");
-        Boolean isCaptain = Boolean.valueOf(sc.next());
+        Boolean isCaptain = Boolean.valueOf(sc.nextLine().toLowerCase());
         System.out.print("t-shirt number: ");
-        Integer tShirtNumber = Integer.valueOf(sc.next());
+        Integer tShirtNumber = Integer.valueOf(sc.nextLine());
+        System.out.println("A player has been created");
         return new Player(name, lastName, position, goals, matchesPlayed, isCaptain, tShirtNumber, null);
     }
 }
