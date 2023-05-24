@@ -1,0 +1,22 @@
+Team Name,Creation Date,Player Name, Player Lastname, Position,Goals,Matches Played,Is Captain,Number
+Team A,5/24/2023,Juan,Rodríguez,GOALKEEPER,57,51,Yes,1
+Team A,5/24/2023,Carlos,Lopéz,DEFENCE,78,25,No,2
+Team A,5/24/2023,Luis,García,DEFENCE,44,13,No,3
+Team A,5/24/2023,Andrés,Martínez,A_MIDFIELDER,99,16,No,4
+Team A,5/24/2023,Alejandro,Ghernández,A_MIDDLE_FORWARD,65,24,No,5
+Team A,5/24/2023,Gabriel,Pérez,A_FORWARD,5,68,No,6
+Team A,5/24/2023,Manuel,Ramírez,A_FORWARD,50,4,No,7
+Team B,5/24/2023,José,Torres,GOALKEEPER,32,46,Yes,1
+Team B,5/24/2023,Pedro,Fernández,DEFENCE,5,11,No,2
+Team B,5/24/2023,Diego,Sánchez,DEFENCE,82,75,No,3
+Team B,5/24/2023,Ricardo,Díaz,A_MIDFIELDER,65,53,No,4
+Team B,5/24/2023,Sergio,Moreno,A_MIDDLE_FORWARD,9,33,No,5
+Team B,5/24/2023,Mario,Castro,A_FORWARD,7,34,No,6
+Team B,5/24/2023,Eduardo,Ruiz,A_FORWARD,48,46,No,7
+Team C,5/24/2023,Francisco,Morales,GOALKEEPER,59,1,Yes,1
+Team C,5/24/2023,Antonio,Silva,DEFENCE,28,77,No,2
+Team C,5/24/2023,Daniel,Flores,DEFENCE,35,74,No,3
+Team C,5/24/2023,Javier,Medina,A_MIDFIELDER,39,7,No,4
+Team C,5/24/2023,Gonzalo,Ríos,A_MIDDLE_FORWARD,0,79,No,5
+Team C,5/24/2023,Ramón,Castillo,A_FORWARD,32,30,No,6
+Team C,5/24/2023,Ernesto,Ortega,A_FORWARD,37,32,No,7

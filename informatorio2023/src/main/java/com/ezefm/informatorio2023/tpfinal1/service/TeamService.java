@@ -6,6 +6,7 @@ import com.ezefm.informatorio2023.tpfinal1.entity.Player;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class TeamService {
@@ -13,7 +14,7 @@ public class TeamService {
     private final PlayerService playerService = new PlayerService();
     private final Scanner sc= new Scanner(System.in);
     public Fut5Team newTeam(){
-        System.out.print("Name: ");
+        System.out.print("Team name: ");
         String name = sc.nextLine();
         System.out.print("Coach: ");
         String coach = sc.nextLine();
@@ -31,7 +32,22 @@ public class TeamService {
             }
         }
     }
-
+    public Fut5Team createTeam(){
+        Fut5Team team = newTeam();
+        int e;
+        do {
+            Player player = playerService.newPlayer();
+            player.setTeam(team.getName());
+            team.getPlayers().add(player);
+            System.out.print("""
+                    1. Yes
+                    2. No
+                    Do you want add other player? :
+                    """);
+            e = Integer.parseInt(sc.nextLine());
+        } while(e != 2);
+        return team;
+    }
     public void deletePlayerByNameAndTeam(List<Fut5Team> teams){
         System.out.print("Team name: ");
         String team = sc.nextLine();
@@ -48,6 +64,69 @@ public class TeamService {
                 }
                 break;
             }
+        }
+    }
+
+    public void assignCoach(Fut5Team team){
+        System.out.print("Coach name: ");
+        String coach = sc.nextLine();
+        team.setCoach(coach);
+    }
+
+    public void getPlayers(List<Fut5Team> teams){
+        System.out.println("Team name: ");
+        String teamName = sc.nextLine();
+        List<Player> players = teams.stream()
+                .filter(team -> team.getName().equals(teamName))
+                .findFirst()
+                .map(Fut5Team::getPlayers)
+                .orElse(null);
+
+        if (players != null) {
+            players.forEach(player -> System.out.println(player.getName()));
+        } else {
+            System.out.println("There is no team with the given name");
+        }
+    }
+
+    public void getCoach(List<Fut5Team> teams){
+        System.out.println("Coach name: ");
+        String coachName = sc.nextLine();
+        String coach = teams.stream()
+                .filter(team -> team.getCoach().equals(coachName))
+                .findFirst()
+                .map(Fut5Team::getCoach)
+                .orElse(null);
+        System.out.println(Objects.requireNonNullElse(coach, "There is no team with the given name"));
+    }
+
+    public void findPlayerByName(List<Fut5Team> teams){
+        boolean p = false;
+        System.out.println("Player name: ");
+        String name = sc.nextLine();
+        for(Fut5Team t : teams){
+           List<Player> players = t.getPlayers();
+           for(Player player : players){
+               if((player.getName() + " " + player.getLastName()).equals(name)){
+                   System.out.printf("""
+                           Name: %s %s
+                           Position: %s
+                           Captain: %s
+                           Team Name: %s
+                           """, player.getName(), player.getLastName(), player.getPosition(), player.getCaptain(), player.getTeam());
+                   p = true;
+                   break;
+               }
+           }
+        }
+        if(!p){
+            System.out.println("The player doesn't exist");
+        }
+    }
+
+    public void showTeams(List<Fut5Team> teams){
+        for (Fut5Team t : teams){
+            System.out.println(t);
         }
     }
 }
