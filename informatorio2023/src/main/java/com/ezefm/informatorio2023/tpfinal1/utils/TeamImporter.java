@@ -15,6 +15,7 @@ import java.util.List;
 public class TeamImporter {
 
     private final DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("M/d/yyyy");
+
     public void importTeamsFromCSV(List<Fut5Team> teams, String fileName, int election) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -22,13 +23,13 @@ public class TeamImporter {
 
             while ((line = reader.readLine()) != null) {
                 if (firstLine) {
-                    // Ignorar la primera línea que contiene los encabezados
+                    // Ignore the first line containing headers
                     firstLine = false;
                     continue;
                 }
-                String[] fields = line.split(","); // Separar los campos utilizando el delimitador
+                String[] fields = line.split(","); // Separate the fields using the delimiter
 
-                // Crear objetos de Fut5Team y Player utilizando los valores de los campos
+                // Create Fut5Team and Player objects using values of the fields
                 String teamName = fields[0];
                 String creationDate = fields[1];
                 String playerName = fields[2];
@@ -41,21 +42,18 @@ public class TeamImporter {
 
                 Player player = new Player(playerName, playerLastname, Position.valueOf(position), goals, matchesPlayed, isCaptain, tShirtNumber, teamName);
 
-                // Buscar si el equipo ya existe en la lista
+                // Check if the team already exist on the list
                 Fut5Team team = teams.stream()
                         .filter(t -> t.getName().equals(teamName))
                         .findFirst()
                         .orElse(null);
                 if (team == null) {
-                    // Si el equipo no existe, crear uno nuevo y agregarlo a la lista
-                    team = new Fut5Team(teamName, LocalDate.parse(creationDate, formatterDate), new ArrayList<Player>(), "");
+                    // If team doesn't exist creates a new one and adds it to the list
+                    team = new Fut5Team(teamName, LocalDate.parse(creationDate, formatterDate), new ArrayList<>(), "");
                     teams.add(team);
                 }
-                // Agregar el jugador al equipo
+                // Add player to team
                 team.getPlayers().add(player);
-            }
-            for(Fut5Team t : teams){
-                System.out.println(t);
             }
             System.out.println(election == 1 ?
                     "Teams imported from CSV successfully." : "Teams imported from TXT successfully.");

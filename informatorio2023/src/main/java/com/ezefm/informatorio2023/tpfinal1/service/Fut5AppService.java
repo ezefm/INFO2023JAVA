@@ -28,13 +28,17 @@ public class Fut5AppService {
         do {
             System.out.println("""
                 1. New team
-                2. Find player by name
-                3. Find team by name (A)
+                2. Find player by full name
+                3. Find team by team name, coach name and captain name (A)
                 4. Find team by name (B)
                 5. Delete team by name
-                6. Import teams (csv / txt) file
-                7. Export teams (csv / txt) file
-                8. Exit
+                6. Import team or teams (csv / txt) file
+                7. Export all teams (csv / txt) file
+                8. Find team by name order by player name
+                9. Find team by name order by t-shirt number
+                10. Find team by name order by position and t-shirt number
+                11. Export team (csv / txt) file
+                12. Exit
                 """);
             e = sc.nextInt();
             switch (e){
@@ -51,9 +55,9 @@ public class Fut5AppService {
                     }while(c != 2);
                 }
                 case 2 -> teamService.findPlayerByName(teams);
-                case 3 -> {}
-                case 4 -> {}
-                case 5 -> {}
+                case 3 -> teamService.findTeamByTeamCoachCaptainName(teams);
+                case 4 -> teamService.findTeamByName(teams);
+                case 5 -> teamService.deleteTeamByName(teams);
                 case 6 -> {
                     System.out.print("""
                             1. CSV
@@ -77,14 +81,32 @@ public class Fut5AppService {
                             """);
                     select = Integer.parseInt(sc.next());
                     if(select == 1){
-                        teamExporter.exportTeamsToCSV(teams, "teams.csv", select);
+                        teamExporter.exportTeamsToCsvOrTxt(teams, "teams.csv", select);
                     } else if (select == 2) {
-                        teamExporter.exportTeamsToCSV(teams, "teams.txt", select);
+                        teamExporter.exportTeamsToCsvOrTxt(teams, "teams.txt", select);
+                    } else {
+                        System.out.println("You have selected a wrong option.");
+                    }
+                }
+                case 8 -> teamService.findTeamByNameOrderByPlayerName(teams);
+                case 9 -> teamService.findTeamByNameOrderByPlayerNumber(teams);
+                case 10 -> teamService.findTeamByNameOrderByPositionAndTShirtNumber(teams);
+                case 11 -> {
+                    System.out.print("""
+                            1. CSV
+                            2. TXT
+                            Select:
+                            """);
+                    select = Integer.parseInt(sc.next());
+                    if(select == 1){
+                        teamExporter.exportTeamToCsvOrTxt(teams, "team.csv", select);
+                    } else if (select == 2) {
+                        teamExporter.exportTeamToCsvOrTxt(teams, "team.txt", select);
                     } else {
                         System.out.println("You have selected a wrong option.");
                     }
                 }
             }
-        }while (e != 8);
+        }while (e != 12);
     }
 }
