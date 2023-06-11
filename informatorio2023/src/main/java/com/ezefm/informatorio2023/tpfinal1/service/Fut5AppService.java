@@ -14,6 +14,7 @@ public class Fut5AppService {
 
     private final Scanner sc = new Scanner(System.in);
     private final TeamService  teamService= new TeamService();
+    private final PlayerService playerService = new PlayerService();
     private final List<Fut5Team> teams = new ArrayList<>();
     private final AddTeams addTeams = new AddTeams();
     private final AddPlayers addPlayers = new AddPlayers();
@@ -38,7 +39,8 @@ public class Fut5AppService {
                 9. Find team by name order by t-shirt number
                 10. Find team by name order by position and t-shirt number
                 11. Export team (csv / txt) file
-                12. Exit
+                12. Show all teams
+                13. Exit
                 """);
             e = sc.nextInt();
             switch (e){
@@ -51,10 +53,10 @@ public class Fut5AppService {
                             2. No
                             Do you want add other team? :
                             """);
-                        c = Integer.parseInt(sc.nextLine());
+                        c = Integer.parseInt(sc.next());
                     }while(c != 2);
                 }
-                case 2 -> teamService.findPlayerByName(teams);
+                case 2 -> playerService.findPlayerByName(teams);
                 case 3 -> teamService.findTeamByTeamCoachCaptainName(teams);
                 case 4 -> teamService.findTeamByName(teams);
                 case 5 -> teamService.deleteTeamByName(teams);
@@ -106,7 +108,8 @@ public class Fut5AppService {
                         System.out.println("You have selected a wrong option.");
                     }
                 }
+                case 12 -> teamService.showTeams(teams);
             }
-        }while (e != 12);
+        }while (e != 13);
     }
 }

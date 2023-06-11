@@ -15,9 +15,9 @@ import java.util.List;
 public class TeamImporter {
 
     private final DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("M/d/yyyy");
-
     public void importTeamsFromCSV(List<Fut5Team> teams, String fileName, int election) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        String filePath = "src/main/java/com/ezefm/informatorio2023/tpfinal1/files/" + fileName;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             boolean firstLine = true;
 
@@ -28,7 +28,6 @@ public class TeamImporter {
                     continue;
                 }
                 String[] fields = line.split(","); // Separate the fields using the delimiter
-
                 // Create Fut5Team and Player objects using values of the fields
                 String teamName = fields[0];
                 String creationDate = fields[1];

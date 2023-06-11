@@ -2,7 +2,6 @@ package com.ezefm.informatorio2023.tpfinal1.utils;
 
 import com.ezefm.informatorio2023.tpfinal1.entity.Fut5Team;
 import com.ezefm.informatorio2023.tpfinal1.entity.Player;
-import com.ezefm.informatorio2023.tpfinal1.service.TeamService;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +12,7 @@ public class TeamExporter {
     private final Scanner sc = new Scanner(System.in);
 
     public void exportTeamToCsvOrTxt(List<Fut5Team> teams, String fileName, int election){
+
         Fut5Team team = null;
         System.out.println("Team name: ");
         String name = sc.nextLine();
@@ -24,7 +24,8 @@ public class TeamExporter {
         if(team == null ){
             System.out.println("Team doesn't exist");
         } else {
-            try (FileWriter writer = new FileWriter(fileName)) {
+            String filePath = "src/main/java/com/ezefm/informatorio2023/tpfinal1/files/" + fileName;
+            try (FileWriter writer = new FileWriter(filePath)) {
                 // Headers - Title
                 writer.write("Team Name,Creation Date,Player Name, Player Lastname, Position,Goals,Matches Played,Is Captain,T-Shirt Number\n");
 
@@ -48,7 +49,8 @@ public class TeamExporter {
     }
 
     public void exportTeamsToCsvOrTxt(List<Fut5Team> teams, String fileName, int election) {
-        try (FileWriter writer = new FileWriter(fileName)) {
+        String filePath = "src/main/java/com/ezefm/informatorio2023/tpfinal1/files/" + fileName;
+        try (FileWriter writer = new FileWriter(filePath)) {
             // Headers - Title
             writer.write("Team Name,Creation Date,Player Name, Player Lastname, Position,Goals,Matches Played,Is Captain,T-Shirt Number\n");
 

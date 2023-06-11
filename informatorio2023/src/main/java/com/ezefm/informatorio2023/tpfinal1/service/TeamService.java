@@ -65,24 +65,6 @@ public class TeamService {
             System.out.println("Team doesn't exist");
         }
     }
-    public void deletePlayerByNameAndTeam(List<Fut5Team> teams){
-        System.out.print("Team name: ");
-        String team = sc.nextLine();
-        for(Fut5Team t : teams){
-            if(t.getName().equals(team)){
-                System.out.print("Player name: ");
-                String playerName = sc.nextLine();
-                int initialSize = t.getPlayers().size();
-                t.getPlayers().removeIf( player -> player.getName().equals(playerName));
-                if(initialSize == t.getPlayers().size()){
-                    System.out.println("The player doesn't exist");
-                } else {
-                    System.out.println("The player has been removed");
-                }
-                break;
-            }
-        }
-    }
 
     public void assignCoach(Fut5Team team){
         System.out.print("Coach name: ");
@@ -190,33 +172,7 @@ public class TeamService {
                                       .thenComparing(Player::gettShirtNumber));
     }
 
-    public void findPlayerByName(List<Fut5Team> teams){
-        boolean p = false;
-        System.out.println("Player name: ");
-        String name = sc.nextLine();
-        for(Fut5Team t : teams){
-           List<Player> players = t.getPlayers();
-           for(Player player : players){
-               if((player.getName() + " " + player.getLastName()).equals(name)){
-                   System.out.printf("""
-                           Name: %s %s
-                           Position: %s
-                           Captain: %s
-                           Team Name: %s
-                           """, player.getName(), player.getLastName(), player.getPosition(), player.getCaptain(), player.getTeam());
-                   p = true;
-                   break;
-               }
-           }
-        }
-        if(!p){
-            System.out.println("The player doesn't exist");
-        }
-    }
-
     public void showTeams(List<Fut5Team> teams){
-        for (Fut5Team t : teams){
-            System.out.println(t);
-        }
+        teams.forEach(System.out::println);
     }
 }
